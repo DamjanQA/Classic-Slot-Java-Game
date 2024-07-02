@@ -128,7 +128,7 @@ public class Slot {
         for (int i = 0; i < 3; i++) {
             Random rando = new Random();
             int numberGen;
-            numberGen = rando.nextInt(0, 3);
+            numberGen = rando.nextInt(0, 4);
 
             // changes generated number to corresponding image
             // image files have to be named accordingly (check strings below)
@@ -142,6 +142,10 @@ public class Slot {
             }
             if (numberGen == 2) {
                 Icon icon = new ImageIcon(getClass().getResource("2.png"));
+                board[0][i].setIcon(icon);
+            }
+            if (numberGen == 3) {
+                Icon icon = new ImageIcon(getClass().getResource("3.png"));
                 board[0][i].setIcon(icon);
             }
         }
