@@ -6,11 +6,8 @@ import java.util.Random;
 
 public class Slot {
 
-
     int boardWidth = 1200;
     int boardHeight = 400;
-
-    ///// mesto za sličice
 
     JFrame frame = new JFrame("Fruity Slot");
     JLabel textLabel = new JLabel();
@@ -22,9 +19,9 @@ public class Slot {
     JButton[][] board = new JButton[1][3];
 
     int currentMoney = 20;
-    //boolean SPIN = true;
     boolean GAMEOVER = false;
     int count = 0;
+    // leftover code, not used atm
 
     Slot() {
         frame.setVisible(true);
@@ -40,7 +37,7 @@ public class Slot {
         textLabel.setText("Current Cash (" + currentMoney + "$)");
         textLabel.setOpaque(true);
 
-        ///spin button
+        // spin button
         spinButton.setFocusable(false);
         buttonPanel.add(spinButton);
         frame.add(buttonPanel, BorderLayout.PAGE_END);
@@ -63,7 +60,6 @@ public class Slot {
                 tile.setForeground(Color.white);
                 tile.setFont(new Font("Arial", Font.BOLD, 120));
                 tile.setFocusable(false);
-
             }
         }
 
@@ -74,19 +70,20 @@ public class Slot {
                     return;
                 }
 
-                //Plaćanje
+                // score check
                 Score();
 
-                //RNG
+                // RNG
                 RNG();
 
-                //Provera+dobitak
+                // win condition check + prize
                 checkWinner();
             }
         });
     }
 
     void checkWinner() {
+
         if (board[0][0].getIcon().toString().equals(board[0][1].getIcon().toString()) &&
                 board[0][1].getIcon().toString().equals(board[0][2].getIcon().toString())) {
             currentMoney = currentMoney + 20;
@@ -111,7 +108,7 @@ public class Slot {
     }
 
     void Score() {
-        // resetuje boje
+        // resets colors
         for (int i = 0; i < 3; i++) {
             board[0][i].setBackground(Color.darkGray);
             //board[0][i].setForeground(Color.white);
@@ -130,20 +127,20 @@ public class Slot {
 
         for (int i = 0; i < 3; i++) {
             Random rando = new Random();
-            int broj;
-            broj = rando.nextInt(0, 3);
-            //String kombinacija = String.valueOf(broj);
-            //board[0][i].setText(kombinacija);
+            int numberGen;
+            numberGen = rando.nextInt(0, 3);
 
-            if (broj == 0) {
+            // changes generated number to corresponding image
+            // image files have to be named accordingly (check strings below)
+            if (numberGen == 0) {
                 Icon icon = new ImageIcon(getClass().getResource("0.png"));
                 board[0][i].setIcon(icon);
             }
-            if (broj == 1) {
+            if (numberGen == 1) {
                 Icon icon = new ImageIcon(getClass().getResource("1.png"));
                 board[0][i].setIcon(icon);
             }
-            if (broj == 2) {
+            if (numberGen == 2) {
                 Icon icon = new ImageIcon(getClass().getResource("2.png"));
                 board[0][i].setIcon(icon);
             }
